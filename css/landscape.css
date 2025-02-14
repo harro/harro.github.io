@@ -1,0 +1,29 @@
+:root {
+    /* A4 page dimensions. */
+    --a4-width: 29.7cm;
+    --a4-height: 21cm;
+ }
+a > span.material-icons {
+    font-size: 22pt;
+    width: var(--page-margin);
+}
+h1 {
+    padding: 0 0.5em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: var(--page-margin);
+    width: var(--a4-width);
+    font-size: 22pt;
+    top: 0;
+    left: 0;
+    text-align: left;
+}
+@media screen and (min-height: 21cm) {
+    body {
+        margin-top: 1em;
+    }
+}
+@page {
+    size: A4 landscape;
+}

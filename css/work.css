@@ -1,0 +1,32 @@
+h2 {
+  font: normal 24pt Roboto, sans-serif;
+  margin-bottom: 1em;
+}
+li, a {
+  font: normal 18pt Roboto, sans-serif;
+}
+li {
+  margin-left: 1em;
+  margin-bottom: 0.8em;
+}
+/* Nested lists. */
+li > ul > li {
+  margin-left: 1.5em;
+  margin-bottom: 0;
+}
+section {
+  display: block;
+  position: relative; 
+  top: 56px;
+  padding: 1em 2em;
+  height: 445px;
+  width: 940px;
+  margin: auto;
+  border: 2px solid var(--large-text-color);
+  border-radius: 6px;
+  box-shadow: 0.5em 0.5em 0.5em var(--shadow-color);
+}
+section > ul {
+  margin: 1em;
+  justify-content: center;
+}

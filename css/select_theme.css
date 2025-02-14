@@ -1,0 +1,61 @@
+/* Light/dark theme button. */
+.theme-menu {
+    padding: 0;
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    text-align: right;
+    z-index: 1;
+}
+.theme-menu button {
+    border-width: 0;
+    background-color: inherit;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+.theme-menu > button {
+    height: var(--page-margin);
+    text-align: right;
+    width: auto;
+}
+.theme-menu span.material-icons, .theme-menu span.button-text {
+    /* font-size: 14pt; */
+    font-size: 18px;
+    vertical-align: middle;
+}
+.theme-menu span.button-text {
+    color: var(--large-text-color);
+}
+.theme-menu > button > span.material-icons {
+    font-size: 24px;
+}
+.theme-submenu {
+    margin: 0;
+    padding: 0.3em;
+    list-style-type: none;
+    list-style-position: inside;
+    vertical-align: middle;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--page-color);
+}
+.theme-submenu li {
+    margin: 0.2em;
+    border-radius: 4px;
+}
+.theme-submenu li:hover {
+    background-color: gray;
+}
+.theme-submenu li.selected-theme {
+    border: 2px solid var(--border-color);
+}
+
+/* Drop theme menu from printed page. */
+@media print {
+    .theme-menu {
+        display: none;
+    }
+} 

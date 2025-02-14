@@ -1,0 +1,79 @@
+
+h2, h2 * {
+  font-size: 26pt;
+}
+p, p * {
+  font-size: 18pt;
+}
+.one-column li, .one-column li * {
+  font-size: 20pt;
+}
+.two-column li, .two-column li * {
+  font-size: 18pt;
+}
+strong {
+  font-weight: bolder;
+}
+em {
+  font-style: italic;
+}
+h2 {
+  margin: 1em 0;
+}
+li {
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+/* Nested lists. */
+li > ul > li {
+  margin-left: 1em;
+  margin-bottom: 0;
+}
+p {
+  padding-left: 0.5em;
+  line-height: 1.5;
+}
+::marker {
+  font-weight: bolder;
+  font-size: larger;
+}
+section {
+  display: block;
+  position: relative;
+  padding: 1em 2em;
+  height: 100%;
+  width: 100%;
+}
+.title-page {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-page > h2 * {
+  text-align: center;
+  margin: auto;
+}
+.title-page > img {
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+.one-column > ul {
+  margin-left: 60px;
+}
+.two-column {
+  display: flex;
+}
+.two-column > *:nth-child(2) {
+  margin-left: 74px;    /* Columns wrap the same as the Google slides. */
+}
+.two-column > *{
+  width: 50%;
+}
+/* TODO: This should show all sections on printing? */
+@media print {
+  section {
+    display: block;
+  }
+}

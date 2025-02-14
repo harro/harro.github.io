@@ -1,0 +1,178 @@
+@page {
+  size: A4 portrait;
+}
+:root {
+  --light-border-color: gray;
+  --light-desktop-color: lightgrey;
+  --light-desktop-shadow: darkgrey;
+  --light-header-color: #660000;
+  --light-hyperlink-color: #1155cc;
+  --light-large-text-color: #434343; /* large headers and banners */
+  --light-page-color: #fffffb; /* simulate slighly yellowed paper. */
+  --light-shadow-color: gray;
+  --light-text-color: black;    /* Small test */
+
+  --dark-border-color: darkgray;
+  --dark-desktop-color: dimgrey;
+  --dark-desktop-shadow: darkgrey;
+  --dark-header-color: #dc9212;
+  --dark-hyperlink-color: #aac2ed;
+  --dark-large-text-color: lightgray;
+  --dark-page-color: #282828;
+  --dark-shadow-color: #141414;
+  --dark-text-color: lightgray;
+
+    /* Light theme (similar to a printed page). */
+    --border-color: var(--light-border-color);
+    --desktop-color: var(--light-desktop-color);
+    --desktop-shadow: var(--light-desktop-shadow);
+    --header-color: var(--light-header-color);
+    --hyperlink-color: var(--light-hyperlink-color);
+    --large-text-color: var(--light-large-text-color);
+    --page-color: var(--light-page-color);
+    --shadow-color: var(--light-shadow-color);
+    --text-color: var(--light-text-color);
+    color-scheme: var(--color-scheme, light);
+
+    @media screen {
+        &:has(input#color-scheme[value="Dark"]) {
+            /* Dark themed attributes. */
+            --color-scheme: dark;
+            --border-color: var(--dark-border-color);
+            --desktop-color: var(--dark-desktop-color);
+            --desktop-shadow: var(--dark-desktop-shadow);
+            --header-color: var(--dark-header-color);
+            --hyperlink-color: var(--dark-hyperlink-color);
+            --large-text-color: var(--dark-large-text-color);
+            --page-color: var(--dark-page-color);
+            --shadow-color: var(--dark-shadow-color);
+            --text-color: var(--dark-text-color);
+        }
+    }
+    @media (prefers-color-scheme: dark) {
+        &:has(input#color-scheme[value="System"]) {
+            /* Dark themed attributes. */
+            --color-scheme: dark;
+            --border-color: var(--dark-border-color);
+            --desktop-color: var(--dark-desktop-color);
+            --desktop-shadow: var(--dark-desktop-shadow);
+            --header-color: var(--dark-header-color);
+            --hyperlink-color: var(--dark-hyperlink-color);
+            --large-text-color: var(--dark-large-text-color);
+            --page-color: var(--dark-page-color);
+            --shadow-color: var(--dark-shadow-color);
+            --text-color: var(--dark-text-color);
+        }
+    }
+    /* A4 page dimensions. */
+    --a4-width: 21cm;
+    --a4-height: 29.7cm;
+    /* A4 page margins for print. */
+    --page-margin: 1.27cm;
+    /* Cell margin similar to tables in Google docs. */
+    --cell-margin: 0.176cm;
+
+    /* Default styles that are similar to Google docs layout. */
+    /* Bulleted indentation */
+    --bullet-pad: 2.5em;
+    /* leading */
+    --row-leading: 0.6em;
+}
+/* Clear browser default styling. */
+* {
+  /* normalise the browser CSS */
+  margin: 0;
+  padding: 0;
+  /* Use the more intuitive box-sizing */
+  box-sizing: border-box;
+  /* Site-wide default settings */
+  font: 9pt Roboto, Cabin, sans-serif;
+  color: var(--large-text-color);
+}
+/* 
+ * General element and attribute styling. 
+ */
+html {
+  /* Simulate a table surface. */
+  background-color: var(--desktop-color);
+  height: 100%;
+}
+body {
+  /* A4 Page properties */
+  width: var(--a4-width);
+  height: var(--a4-height);
+  margin: auto;
+  /* Simulate slightly yellowed paper. */
+  background-color: var(--page-color);
+  /* Simulate the print region of the page */
+  padding: var(--page-margin);
+  /* Simulate a printed page, resting on a table. */
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px var(--shadow-color);
+  position: relative;     /* Needed to contain the Theme menu. */
+  /* Add top margin if screen height is bigger than the page. */
+  /* var(--a4-height) does not work here. */
+  @media screen and (min-height: 29.7cm) {
+    margin-top: 1em;
+  }
+}
+h1, h1 *, h3, h3 *{
+    color: var(--header-color);
+}
+p, li {
+    color: var(--text-color);
+}
+a, a span {
+  color: var(--hyperlink-color);
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:active {
+  text-decoration: underline;
+}
+/* Google material Icons */
+.material-icons {
+  vertical-align: middle;
+  color: var(--hyperlink-color);
+}
+
+@media print {
+  :root {
+    /* Increase contrast and reduce saturation for print. */
+    --page-color: white;
+  }
+  /* Flatten shadows for print. */
+  body {
+    box-shadow: none;
+  }
+  /* Drop navagation icons from print. */
+  h2 .material-icons {
+    display: none;
+  }
+}
+/* On small screens show warning that content is not viewable. */
+.body-alt {
+  display: none;
+}
+@media screen and ((max-height: 600px) or (max-width: 600px)) {
+  body * {
+    display: none;
+  }
+  .body-alt {
+    display: block;
+    color: var(--header-color);
+    width: calc(min(100%, 80vw));
+  }
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

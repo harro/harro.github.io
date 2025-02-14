@@ -1,0 +1,105 @@
+div#gallery {
+  width: 75%;
+  height: 100%;
+  margin: auto;
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+#gallery img {
+  height: 150px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#gallery figure {
+  background-color: white;
+  padding: 15px 10px;
+  width: 170px;
+  height: 210px;
+  text-align: center;
+  box-shadow: 1px 2px 3px var(--shadow-color);
+}
+
+figcaption {
+  font-family: 'Cedarville Cursive', cursive;
+  color: var(--light-large-text-color);
+  font-size: 15px;
+  text-align: center;
+}
+
+#gallery figure:hover {
+  box-shadow: 5px 10px 100px var(--shadow-color);
+  transform: scale(1.5,1.5);
+  z-index: 20;
+}
+
+figure.pic1 {
+  transform: rotate(-10deg);
+  z-index: 1;
+}
+
+figure.pic2 {
+  transform: rotate(15deg);
+  z-index: 2;
+}
+
+figure.pic3 {
+  transform: rotate(-25deg) translate(-10px, 0);
+}
+
+figure.pic4 {
+  transform : rotate(5deg);
+}
+
+figure.pic5 {
+  transform: rotate(-3deg) translate(0, 15px);
+}
+
+figure.pic6 {
+  transform: rotate(7deg) translate(0, -1px);
+  z-index: 0;
+}
+
+figure.pic7 {
+  transform: rotate(2deg) translate(0, 20px);
+  z-index: 2;
+}
+
+figure.pic8 {
+  transform: rotate(12deg) translate(-10px, -15px);
+  z-index: 3;
+}
+
+figure.pic9 {
+  transform: rotate(-8deg);
+  z-index: 2;
+}
+
+figure.pic10 {
+  transform: rotate(10deg);
+  z-index: 2;
+}
+
+figure.pic11 {
+  transform: rotate(-5deg) translate(10, 0);
+}
+
+figure.pic12 {
+  transform: rotate(10deg) translate(-5px, -10px);
+  z-index: 1;
+}
+
+figure.pic13 {
+  transform: rotate(0deg) translate(-3px, -15px);
+}
+
+figure.pic14 {
+  transform : rotate(-15deg) translate(-10px, 10px);
+  z-index: 2;
+}
+
+figure.pic15 {
+  transform: rotate(6deg);
+}

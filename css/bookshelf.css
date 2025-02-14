@@ -1,0 +1,10 @@
+img {
+  margin-top: 0.5em;
+  vertical-align: middle;
+  /* Simulate a physical photo attached to a paper document. */
+  box-shadow: 0.5em 0.5em 0.5em var(--shadow-color);
+  border-radius: 21px;
+}
+area {
+  cursor: default;
+}

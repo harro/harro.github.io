@@ -1,0 +1,115 @@
+hr {
+  clear: both;
+  margin: var(--cell-margin);
+}
+h1, h1 * {
+    font: normal 18pt Roboto, sans-serif;
+}
+h1 em {
+  font-style: italic;
+}
+h2 {
+  font: normal 14pt Cabin, Roboto, sans-serif;
+  margin-left: calc(var(--cell-margin) *2);
+  display: flex;
+  align-items: center;
+}
+h2 span.material-icons {
+  margin-left: 5px;
+  font-size: 18px !important;
+}
+h3 {
+  font: normal 12pt Roboto, sans-serif;
+}
+h3 * {
+  font: normal 12pt Roboto, sans-serif;
+  margin-right: var(--cell-margin);
+}
+h1, h2, p, ul, ol {
+  margin-bottom: var(--row-leading);
+}
+table {
+  width: 100%;
+  text-align: left;
+}
+table, th, td {
+  border-style: none;
+}
+ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  /* Potentially 0.75cm instead or em, as Google docs uses ruler-based measurements. */
+  margin-left: 2.5em;
+}
+aside > ul {
+  margin-left: 1.2em;
+}
+img {
+  margin: auto;
+  opacity: 0.9;
+  /* Simulate a physical photo attached to a paper document. */
+  box-shadow: 3px 3px 3px var(--shadow-color);
+  border-radius: 21px;
+}
+img:hover {
+  opacity: 1.0;
+}
+li {
+  margin-bottom: 0.2em;
+}
+figure {
+  float: left;
+  /* TODO: This should work with max-width? */
+  width: 5cm;
+  text-align: center;
+  margin-top: var(--row-leading);
+  margin-bottom: var(--row-leading);
+}
+header, summary, section, aside, footer {
+  margin-right: var(--cell-margin)
+}
+header ul {
+  position: relative;
+  left: var(--bullet-pad);
+  width: 90%;
+}
+main {
+  float: left;
+  width: 82%;
+  border-right: thin solid var(--border-color);
+  margin-bottom: var(--row-leading);
+}
+main > *:not(h2) {
+  margin-left: 0.85cm;
+  margin-right: var(--cell-margin);
+}
+main > h3 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* Tabstops for "Work Experience" headers. */
+main .role {
+  width: 40%;
+}
+main .role, .org {
+  float: left;
+}
+main .term {
+  float: right;
+}
+aside {
+  float: right;
+}
+aside > h2 {
+  margin-left: 0;
+}
+footer td {
+  text-align: center;
+  border-right: thin solid var(--border-color);
+  height: 100%
+}
+/* Google material Icons */
+footer .material-icons {
+  margin-right: 3px;
+  font-size: 12px;
+}
