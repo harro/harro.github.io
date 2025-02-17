@@ -23,17 +23,15 @@
   <link rel="stylesheet" href="css/carousel.css" />
   <link rel="stylesheet" href="css/select_theme.css" />
   <script src="javascript/select_theme.js"></script>
-  <script src="javascript/carousel.js" async></script>
+  <script src="javascript/carousel.js"></script>
   <title>Harro's User Manual</title>
 </head>
 
 <body onload="updateAndReveal()" style="visibility:hidden;">
 <theme-menu></theme-menu>
 <h1 class="body-alt">Apologies. Content is optimised for print media. Please view in a larger window.</h1>
-<a class="carousel-prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="carousel-next" onclick="plusSlides(1)">&#10095;</a>
-<div class="carousel">
-  <section id="section1" class="carousel-slides carousel-fade">
+<div id="carousel">
+  <section class="carousel-slides carousel-fade">
     <!-- Lots of inline styling, as this is a "one-off".  -->
     <div class="title-page">
       <h2>
@@ -47,7 +45,7 @@
       LinkedIn: <a href="https://www.linkedin.com/in/daniel-harrison-9b86811">
       daniel-harrison-9b86811</a></p>
   </section>
-  <section id="section2" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>I derive professional satisfaction from:</h2>
     <div class="one-column">
       <ul>
@@ -67,7 +65,7 @@
       </ul>
     </div>
   </section>
-  <section id="section3" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>What is important, for myself … and probably everyone</h2>
     <div class="two-column">
       <ul>
@@ -101,7 +99,7 @@
       </ul>
     </div>
   </section>
-  <section id="section4" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>Where I like to work</h2>
     <div class="two-column">
       <ul>
@@ -128,7 +126,7 @@
       </ul>
     </div>
   </section>
-  <section id="section5" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>The times I tend to work</h2>
     <div class="two-column">
       <ul>
@@ -157,7 +155,7 @@
       </ul>
     </div>
   </section>
-  <section id="section6" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>The best ways to communicate with me</h2>
     <div class="two-column">
       <ul>
@@ -179,7 +177,7 @@
     </div>
     </div>
   </section>
-  <section id="section7" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>How I like to receive feedback</h2>
     <div class="two-column">
       <ul>
@@ -212,7 +210,7 @@
       </ul>
     </div>
   </section>
-  <section id="section8" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>How I work and learn</h2>
     <div class="two-column">
       <ul>
@@ -244,7 +242,7 @@
       </ul>
     </div>
   </section>
-  <section id="section9" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>Other things to know about me</h2>
     <div class="two-column">
       <ul>
@@ -282,7 +280,7 @@
       </ul>
     </div>
   </section>
-  <section id="section10" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>UN Sustainable Goals that resonate the most with me</h2>
     <div style="display:flex;justify-content:space-evenly;width:100%;padding-top:128px">
       <img width="192px" alt="11 Sustainable Cities" src="images/Sustainable_Development_Goal_11SustainableCities.svg">
@@ -292,19 +290,19 @@
       <img width="192px" alt="15 Life on Land" src="images/Sustainable_Development_Goal_15LifeOnLand.svg">
     </div>
   </section>
-  <section id="section11" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <div class="title-page">
       <h2 style="width:190px">Doris,<br /> my wife</h2>
       <img src="images/doris.jpg" alt="Doris">
     </div>
   </section>
-  <section id="section12" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <div class="title-page">
       <h2 style="width:190px">Anneliese &amp; Ben,<br /> our children</h2>
       <img src="images/anneliese_ben.jpg" alt="Anneliese and Ben">
     </div>
   </section>
-  <section id="section13" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>My Philosophy on Software Project Management</h2>
     <div class="two-column">
       <ul>
@@ -341,7 +339,7 @@
       </ul>
     </div>
   </section>
-  <section id="section14" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>My Philosophy on Software Development and Operations</h2>
     <div class="two-column">
       <ul>
@@ -363,7 +361,7 @@
       </ul>
     </div>
   </section>
-  <section id="section15" class="carousel-slides carousel-fade">
+  <section class="carousel-slides carousel-fade">
     <h2>My Philosophy on Network Architecture and Engineering</h2>
     <div class="two-column">
       <ul>
@@ -383,24 +381,7 @@
     </div>
   </section>
 </div>
-<footer>
-  <!-- Add row here for every section above. -->
-  <span class="carousel-dot" onclick="currentSlide(1)"></span>
-  <span class="carousel-dot" onclick="currentSlide(2)"></span>
-  <span class="carousel-dot" onclick="currentSlide(3)"></span>
-  <span class="carousel-dot" onclick="currentSlide(4)"></span>
-  <span class="carousel-dot" onclick="currentSlide(5)"></span>
-  <span class="carousel-dot" onclick="currentSlide(6)"></span>
-  <span class="carousel-dot" onclick="currentSlide(7)"></span>
-  <span class="carousel-dot" onclick="currentSlide(8)"></span>
-  <span class="carousel-dot" onclick="currentSlide(9)"></span>
-  <span class="carousel-dot" onclick="currentSlide(10)"></span>
-  <span class="carousel-dot" onclick="currentSlide(11)"></span>
-  <span class="carousel-dot" onclick="currentSlide(12)"></span>
-  <span class="carousel-dot" onclick="currentSlide(13)"></span>
-  <span class="carousel-dot" onclick="currentSlide(14)"></span>
-  <span class="carousel-dot" onclick="currentSlide(15)"></span>
-</footer>
+<carousel-controls></carousel-controls>
 </body>
 
 </html>

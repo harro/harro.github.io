@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="css/carousel.css" />
   <link rel="stylesheet" href="css/select_theme.css" />
   <script src="javascript/select_theme.js"></script>
-  <script src="javascript/carousel.js" async></script>
+  <script src="javascript/carousel.js"></script>
   <title>Work History</title>
 </head>
 
@@ -36,10 +36,8 @@
   Work: History & Highlights
   <theme-menu></theme-menu>
 </h1>
-<a class="carousel-prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="carousel-next" onclick="plusSlides(1)">&#10095;</a>
-<div class="carousel">
-  <section id="section1" class="carousel-slides carousel-fade">
+<div id="carousel">
+  <section class="carousel-slides carousel-fade">
     <h2>Google: Senior Technical Project manager</h2>
     <ul>
       <li>Support software teams in launching apps and app features for
@@ -67,7 +65,7 @@
       </li>
     </ul>
   </section>
-  <section id="section2" class="carousel-slides carousel-fade" style="display:none">
+  <section class="carousel-slides carousel-fade" style="display:none">
     <h2>Google: Senior Network Engineer</h2>
     <ul>
       <li>
@@ -81,7 +79,7 @@
         <li>Grew the production network capacity by some two orders of magnitude</li>
     </ul>
   </section>
-  <section id="section3" class="carousel-slides carousel-fade" style="display:none">
+  <section class="carousel-slides carousel-fade" style="display:none">
     <h2>Cisco Systems: Consulting Engineer</h2>
     <ul>
       <li>
@@ -101,11 +99,7 @@
     </ul>
   </section>
   </div>
-<footer>
-  <span class="carousel-dot" onclick="currentSlide(1)"></span>
-  <span class="carousel-dot" onclick="currentSlide(2)"></span>
-  <span class="carousel-dot" onclick="currentSlide(3)"></span>
-</footer>
+  <carousel-controls></carousel-controls>
 </body>
 
 </html>
