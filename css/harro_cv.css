@@ -65,7 +65,7 @@ figure {
   margin-top: var(--row-leading);
   margin-bottom: var(--row-leading);
 }
-header, summary, section, aside, footer {
+header, section, aside, footer {
   margin-right: var(--cell-margin)
 }
 header ul {
