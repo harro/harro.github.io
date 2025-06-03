@@ -5,7 +5,7 @@ A arguments that depend on the user are prefixed with an underscore.
 
 ## Help [⎘](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
 
-    git <command> -help
+    git _command -help
     git help –all
 
 ## A new Client
@@ -56,7 +56,7 @@ can re-point to a different repository.
 We can also have multiple remote repositories, with local names other than
 *origin*. The following adds *_localname* and points to the same remote repo.
 
-    git remote add _localname https://github.com/myorg.myproject.git            # Add a remote
+    git remote add _local_name https://github.com/myorg.myproject.git           # Add a remote
 
 We may want to do this if we are working with a remote repository that is a fork
 of some other remote repository. If we add *upstream* as a name pointing at the
@@ -64,8 +64,8 @@ original repository, we forked from, then we can pull/push from either.
 
 Not surprisingly we can rename and remove local names for repositories.
 
-    git remote rename _oldname _newname                                         # Rename locally
-    get remote rm _stalename                                                    # Remove remotely
+    git remote rename _old_name _new_name                                       # Rename locally
+    get remote rm _stale_name                                                   # Remove remotely
 
 **Note**: Removing a local name for a remote repository has no impact on the
 remote repository, it only affects the local client.
@@ -92,9 +92,22 @@ The log command is a great way to see what branch (and commit) we are on.
 To see all commits then add `--all`, and if you want to see the full tree then
 add `--online --decorate --graph` as well.
 
-    git log –oneline                                                            # Where are we
+    git log –oneline              // --all --online --decorate --graph          # Where are we
+
+The `branch` command can also show this.
+
+    git show-branch _branch_name  // --all                                      # Branch state
 
 A branch is really only a small file with the SHA of the commit it points to.
+
+Other commands for viewing, navigating and organising branches.
+
+    git branch                                                                  # List branches
+    git branch -r                                                               # List remotes
+    git branch -a                                                               # local and remote
+    git branch -m _old_name _new_name                                           # Rename branch
+    git branch -d _branch_name                                                  # Delete branch
+    git push --delete _remote_name _branch_name                                 # Delete remote
 
 Note: Avoid leaving changes in the staging area of a branch. This can make
 it problematic switching branches and merging.
@@ -127,7 +140,7 @@ But it's easier just to include them with the commit itself (`-a`).
 
 Files can be moved or removed with the corresponding git commands.
 
-    git mv _oldpath/oldfilename _newpath/newfilename                            # Move files
+    git mv _old_path/old_filename _new_path/new_filename                        # Move files
     git rm _filename                                                            # Remove files
 
 Conversely to remove a file from being tracked by git, but leave it in the
@@ -165,7 +178,7 @@ earlier change (x is number of revisions back).
 Roll back a change by undoing prior commit/s (rather than above, where we add a
 new commit that is effectively a roll back).
 
-    git reset _commithash
+    git reset _commit_hash
 
 Update the last commit by removing and reapplying an edited replacement
 
