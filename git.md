@@ -15,7 +15,8 @@ Arguments that depend on the user inputs are prefixed with an underscore.
     git help –all
 
 **Note**: Several commands `add`, `reset` and `stash` take `-p` as an argument
-and apply changes interactively.
+and apply changes progressively. Several commands `add`, `clean` and `rebase`
+take `-i` as an argument to make changes interactively.
 
 ## A New Client
 
@@ -102,6 +103,7 @@ To see all commits then add `--all`, and if you want to see the full tree then
 add `--online --decorate --graph` as well.
 
     git log –oneline              // --all --online --decorate --graph          # Where are we
+    git reflog                                                                  # Where HEAD was
 
 The `branch` command can also show this.
 
@@ -121,7 +123,7 @@ Other commands for viewing, navigating and organizing branches.
 **Warning**: Edits and staged changes only exist in the current branch. Use
 stashing in order to change branches without losing data.
 
-## Working with Files
+## Working with Files [⎘](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 
 The working directory is a scratchpad for making changes. It's easy and low
 cost to update or remove changes.
@@ -174,30 +176,50 @@ If we want to remove all changes in this branch.
 
 ### Changing the Commit [⎘](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History)
 
-Committed too early, want to add more changes, or reword the message.
+Committed too early, want to add more changes, or reword the message (`-m`).
 
+    git add _filename
     git commit --amend                                                          # Update last commit
 
-Not happy with the commit. Roll back a change with a new commit (`–no-edit`
-skips the requirement for a change message). Where *HEAD~x* reverts to an
-earlier change (x is number of revisions back).
+If there are files that shouldn't be in the commit. First reset the file then
+amend.
+
+    git reset HEAD^ -- _filename
+    got commit --amend
+
+Not happy with the commit at all. Roll back a change with a new commit
+(`–no-edit` skips the requirement for a change message). Where `HEAD~x`
+reverts to an earlier change (x is number of revisions back).
 
     git revert HEAD –no-edit                                                    # Revert commit/s
 
-Roll back a change by undoing prior commit/s (rather than above, where we add a
-new commit that is effectively a roll back).
+**Note**: `revert` is additive no commit is actually lost, merely nullified by a
+new commit.
 
-    git reset _commit_hash
+Roll back a change by actually undoing prior commit/s as if they never happened
+(rather than above, where we add a new commit that is effectively a roll back).
+
+Revert moves where HEAD is pointing. What it does with the commits that are
+after that point depends on the flags. By default (`--mixed`) all the changes
+that were part of subsequent commits are now edits in the working location
+(unstaged). We may prefer for them to be staged (`--soft`) or deleted entirely
+('--hard`).
+
+    git reset _commit_hash                                                      # Undo commits
 
 Update the last commit by removing and reapplying an edited replacement
 
-    git commit –amend -m “_message”
+    git commit –amend -m “_message”                                             # Update commit msg
 
 ## Branch Merging [⎘](https://git-scm.com/book/en/v2/Git-Branching-Branch-Management)
 
 Merges are performed by moving (checkout/switch) to the branch where you want to
 merge. Ensure the branch is up to date with the remote repository by pulling
 from the *origin* then merging in the branch with the desired changes.
+
+The flags `--strategy=ours` and `--strategy=theirs` tells merge to favor the
+destination, or the source when resolving conflicts. The commit history in the
+branch can be squashed into a single commit with `--squash`.
 
     git switch master
     git pull origin _label                                                      # Update from origin
@@ -228,11 +250,11 @@ Delete branches that are no longer needed.
 To know which branches are no longer needed because they have no unmerged
 changes (`-v` shows the commit it points at).
 
-    git branch --merged
+    git branch --merged                                                         # Merged branches
 
 Or conversely ones that are yet to be merged.
 
-    git branch --no-merged
+    git branch --no-merged                                                      # unmerged branches
 
 ### Pruning a Branch
 
@@ -254,9 +276,31 @@ It is becoming increasingly common for the default branch *master* to be named
 
 Sequence of commands.
 
-    git branch --move master main
+    git branch --move master main                                               # Rename master
     git push --set-upstream origin main
     git push origin --delete master
+
+## Cleaning up the Commit Log [⎘](https://git-scm.com/book/en/v2/Git-Branching-Rebasing)
+
+Should our history have a lengthy sequence of commits and it makes better sense
+to have less. The commits can be squashed, reworded or edited interactively.
+
+Use `rebase` to have a linear commit history - unlike the `merge` command. So
+instead of merging a branch to main, we replay the changes on main
+interactively.
+
+    git checkout _branch_name                                                   # Rebase a branch
+    git rebase master
+
+On the same branch we can rebase to an earlier commit to clean the commits
+before that point.
+
+    git rebase -i HEAD              # HEAD~n                                    # Rebase ourselves
+    git rebase --continue                                                       # Resume rebase
+    git rebase --abort                                                          # Cancel rebase
+    git rebase --skip                                                           # Skip a commit
+
+**Warning**: Only clean a commit history that is still local to your client.
 
 ## Stashing Changes [⎘](https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning#_git_stashing)
 
@@ -275,7 +319,7 @@ directory that is not clean. Or a branch where additional commits have since
 been made. There will be potential merge conflicts. To create a new branch
 pointing at the same commit as the original stash had.
 
-    git stash branch _new_branch_name
+    git stash branch _new_branch_name                                           # Unstash cleanly
 
 ### Cleaning Cruft
 
@@ -283,7 +327,7 @@ A safe way to clean untracked files from a working directory is to stash
 everything first, then clean. The `clean` command can also be run with `-n`
 (instead of `-f`) or `-i` to dry run first or run interactively.
 
-    git stash --all
+    git stash --all                                                             # Full save
     git clean -f -d         # -x to also clean files matching your .gitignore   # Delete untracked
 
 ## Sources
