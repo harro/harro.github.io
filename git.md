@@ -1,23 +1,32 @@
 # Working with Git
 
+This document is half cheat-sheet, half refresher - for the occasions when I've
+spent time away from Git and have let myself get rusty (my day-to-day work is
+with Subversion/Mercurial).
+
+Published here just in case its useful for others.
+
 **Note**: Examples use *myorg* and *myproject* as organisation and project name.
-A arguments that depend on the user are prefixed with an underscore.
+Arguments that depend on the user inputs are prefixed with an underscore.
 
 ## Help [⎘](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
 
-    git _command -help
+    git _command --help
     git help –all
 
-## A new Client
+**Note**: Several commands `add`, `reset` and `stash` take `-p` as an argument
+and apply changes interactively.
+
+## A New Client
 
 Establish and sync a new local client to an existing remote repository.
 
     git clone git@github.com:myorg/myproject                                    # Existing project
     git pull git@github.com:myorg/myproject.git                                 # Sync/merge remote
     
-Or via HTTPS (preferred).
+Or via HTTPS.
 
-    git clone https://github.com/myorg.myproject.git
+    git clone https://github.com/myorg.myproject.git                            # HTTPS is preferred
     git pull https://github.com/myorg.myproject.git
 
 The *pull* command is equivalent to a *fetch* and merge*. the *clone* command
@@ -26,7 +35,7 @@ on the remote.
 
 ## A New Repository
 
-If creating a new client without cloning a remote repository, then initialise
+If creating a new client without cloning a remote repository, then initialize
 the working directory to begin tracking changes - and setup the .git metadata.
 
     git init                                                                    # A fresh start
@@ -39,7 +48,7 @@ By default the remote name implicitly defaults to *"origin"* when cloning a
 repository. That way we use the handle *origin* instead of the full URL name of
 the remote repo when syncing changes between the two.
 
-If a client was initialised (`init`), rather than cloned, then it wont yet have
+If a client was initialized (`init`), rather than cloned, then it wont yet have
 a remote repository associated to the name *origin* but it can be added.
 
     git remote add origin https://github.com/myorg.myproject.git                # Init origin.
@@ -54,7 +63,7 @@ can re-point to a different repository.
     git remote set-url origin https://github.com/myorg.myproject.git            # Change a remote.
 
 We can also have multiple remote repositories, with local names other than
-*origin*. The following adds *_localname* and points to the same remote repo.
+*origin*. The following adds *_local_name* and points to the same remote repo.
 
     git remote add _local_name https://github.com/myorg.myproject.git           # Add a remote
 
@@ -100,7 +109,7 @@ The `branch` command can also show this.
 
 A branch is really only a small file with the SHA of the commit it points to.
 
-Other commands for viewing, navigating and organising branches.
+Other commands for viewing, navigating and organizing branches.
 
     git branch                                                                  # List branches
     git branch -r                                                               # List remotes
@@ -109,8 +118,8 @@ Other commands for viewing, navigating and organising branches.
     git branch -d _branch_name                                                  # Delete branch
     git push --delete _remote_name _branch_name                                 # Delete remote
 
-Note: Avoid leaving changes in the staging area of a branch. This can make
-it problematic switching branches and merging.
+**Warning**: Edits and staged changes only exist in the current branch. Use
+stashing in order to change branches without losing data.
 
 ## Working with Files
 
@@ -118,10 +127,10 @@ The working directory is a scratchpad for making changes. It's easy and low
 cost to update or remove changes.
 
 Staged changes sit in between the working directory and a commit. Planned
-changes are organised here in preparation for committing. Often this step is
+changes are organized here in preparation for committing. Often this step is
 skipped (`-a` flag) but runs the risk of producing unclean commits.
 
-**Note**: Organise commits so that that they tell a coherent and succinct
+**Note**: Organize commits so that that they tell a coherent and succinct
 narrative of the changes made to the project.
 
 To see the status of which files have been changed, added, deleted, or staged
@@ -210,19 +219,29 @@ As the merge cannot rebase to head due to the commit hashes being different.
 
 ### Deleting a Branch
 
-Double check the branch has no pending changes that are still desired. Delete
-branches that are no longer needed.
+Delete branches that are no longer needed.
 
     git branch -d _branch                                                       # Delete branch
 
-To know which branches can be safely removed (`-v` shows the commit it points
-at).
+**Note**: This command will warn if there are unmerged changes.
+
+To know which branches are no longer needed because they have no unmerged
+changes (`-v` shows the commit it points at).
 
     git branch --merged
 
-Or ones that are yet to be merged.
+Or conversely ones that are yet to be merged.
 
     git branch --no-merged
+
+### Pruning a Branch
+
+Don't like any of the commits in this branch. Then the branch and the entire
+chain of commits can be deleted.
+
+    git branch -D _branchname
+
+**Warning**: Definitely use caution here.
 
 ## Renaming Branches
 
@@ -233,6 +252,44 @@ It is becoming increasingly common for the default branch *master* to be named
 1. Push to the remote.
 1. Delete the old branch on the remote.
 
+Sequence of commands.
+
     git branch --move master main
     git push --set-upstream origin main
     git push origin --delete master
+
+## Stashing Changes [⎘](https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning#_git_stashing)
+
+Made a mess, don't want to clean it up before working on something else. Stash
+both the staged changes and unstaged edits (`-u` to also stash new untracked
+files, or even ignored files with `-a`).
+
+    git stash                                                                   # Clean workspace
+    git stash list                                                              # Stashes
+    git stash apply     # stash@{n} --index # to re-stage changes               # Mess is back!
+    git stash drop _stash_name                                                  # Delete stash
+    git stash pop _stash_name    # Same as the above two commands, in one
+
+**Warning**: This can get even messier if applying the stash to a working
+directory that is not clean. Or a branch where additional commits have since
+been made. There will be potential merge conflicts. To create a new branch
+pointing at the same commit as the original stash had.
+
+    git stash branch _new_branch_name
+
+### Cleaning Cruft
+
+A safe way to clean untracked files from a working directory is to stash
+everything first, then clean. The `clean` command can also be run with `-n`
+(instead of `-f`) or `-i` to dry run first or run interactively.
+
+    git stash --all
+    git clean -f -d         # -x to also clean files matching your .gitignore   # Delete untracked
+
+## Sources
+
+* [Git ⎘](https://git-scm.com/doc)
+* [Github ⎘](https://docs.github.com/en/get-started/using-git/about-git)
+* [w3Schools ⎘](https://www.w3schools.com/git/git_tagging.asp?remote=github)
+* [Atlassian ⎘](https://www.atlassian.com/git/glossary#commands)
+* [Flavio Copes ⎘](https://flaviocopes.pages.dev/books/git-cheat-sheet.pdf)
