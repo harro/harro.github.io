@@ -6,7 +6,7 @@ with Subversion/Mercurial).
 
 Published here just in case its useful for others.
 
-**Note**: Examples use *myorg* and *myproject* as organisation and project name.
+> **Note:** Examples use *myorg* and *myproject* as organisation and project name.
 Arguments that depend on the user inputs are prefixed with an underscore.
 
 ## Help [⎘](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
@@ -14,7 +14,7 @@ Arguments that depend on the user inputs are prefixed with an underscore.
     git _command --help
     git help –all
 
-**Note**: Several commands `add`, `reset` and `stash` take `-p` as an argument
+> **Note:** Several commands `add`, `reset` and `stash` take `-p` as an argument
 and apply changes progressively. Several commands `add`, `clean` and `rebase`
 take `-i` as an argument to make changes interactively.
 
@@ -77,7 +77,7 @@ Not surprisingly we can rename and remove local names for repositories.
     git remote rename _old_name _new_name                                       # Rename locally
     get remote rm _stale_name                                                   # Remove remotely
 
-**Note**: Removing a local name for a remote repository has no impact on the
+> **Note:** Removing a local name for a remote repository has no impact on the
 remote repository, it only affects the local client.
 
 ## Creating and Merging Branches [⎘](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
@@ -95,7 +95,7 @@ Switch to the branch with checkout (`-b` create the branch if it doesn’t exist
 *Switch* is similar to checkout. With `-c` creating the branch beforehand and
 `git switch -` popping you back to where you came from.
 
-**Note**: *HEAD* is now pointing at this new branch. HEAD is where changes are
+> **Note:** *HEAD* is now pointing at this new branch. HEAD is where changes are
 staged and committed.
 
 The log command is a great way to see what branch (and commit) we are on.
@@ -120,7 +120,7 @@ Other commands for viewing, navigating and organizing branches.
     git branch -d _branch_name                                                  # Delete branch
     git push --delete _remote_name _branch_name                                 # Delete remote
 
-**Warning**: Edits and staged changes only exist in the current branch. Use
+> **Warning:** Edits and staged changes only exist in the current branch. Use
 stashing in order to change branches without losing data.
 
 ## Working with Files [⎘](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
@@ -132,7 +132,7 @@ Staged changes sit in between the working directory and a commit. Planned
 changes are organized here in preparation for committing. Often this step is
 skipped (`-a` flag) but runs the risk of producing unclean commits.
 
-**Note**: Organize commits so that that they tell a coherent and succinct
+> **Note:** Organize commits so that that they tell a coherent and succinct
 narrative of the changes made to the project.
 
 To see the status of which files have been changed, added, deleted, or staged
@@ -166,7 +166,7 @@ Staged a file and have changed your mind and want to unstage it.
     git restore --staged _filename    # Supersedes "git reset HEAD _filename"   # Unstage a file
 
 Now that it is unstaged the modifications can be removed completely.
-**Warning**: Changes to the file will be lost!
+> **Warning:** Changes to the file will be lost!
 
     get restore _filename             # Supersedes "git checkout -- _filename"  # Remove edits
 
@@ -200,7 +200,7 @@ Where `HEAD~x` reverts to an earlier change (x is number of revisions back).
 
     git revert _commit                                                          # A specific commit
 
-**Note**: `revert` is additive, no commit is actually lost, merely nullified by
+> **Note:** `revert` is additive, no commit is actually lost, merely nullified by
 a new commit.
 
 #### Reset
@@ -246,7 +246,7 @@ If there are merge conflicts then there will be newly modified files with those
 conflicts. Edit the files, search for the `======` conflicts, resolve and then
 stage and commit.
 
-**Note**: On github avoid squashing commits when merging. With Codespaces these
+> **Note:** On github avoid squashing commits when merging. With Codespaces these
 squashed commits result in duplicate commits and merge conflicts.
 As the merge cannot rebase to head due to the commit hashes being different.
 
@@ -256,7 +256,7 @@ Delete branches that are no longer needed.
 
     git branch -d _branch                                                       # Delete branch
 
-**Note**: This command will warn if there are unmerged changes.
+> **Note:** This command will warn if there are unmerged changes.
 
 To know which branches are no longer needed because they have no unmerged
 changes (`-v` shows the commit it points at).
@@ -274,7 +274,7 @@ chain of commits can be deleted.
 
     git branch -D _branchname                                                   # Delete branch
 
-**Warning**: Definitely use caution here.
+> **Warning:** Definitely use caution here.
 
 ## Renaming Branches
 
@@ -311,7 +311,7 @@ before that point.
     git rebase --abort                                                          # Cancel rebase
     git rebase --skip                                                           # Skip a commit
 
-**Warning**: Only clean a commit history that is still local to your client.
+> **Warning:** Only clean a commit history that is still local to your client.
 
 ## Stashing Changes [⎘](https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning#_git_stashing)
 
@@ -325,7 +325,7 @@ files, or even ignored files with `-a`).
     git stash drop _stash_name                                                  # Delete stash
     git stash pop _stash_name    # Same as the above two commands, in one
 
-**Warning**: This can get even messier if applying the stash to a working
+> **Warning:** This can get even messier if applying the stash to a working
 directory that is not clean. Or a branch where additional commits have since
 been made. There will be potential merge conflicts. To create a new branch
 pointing at the same commit as the original stash had.
@@ -422,7 +422,7 @@ The `rebase` command can be run interactively:
 * `drop` to remove any unwanted commits.
 * `edit` to split or change a commit.
 
-**Note**: it will drop to the command line to allow the changes to be made in
+> **Note:** it will drop to the command line to allow the changes to be made in
 the case of an `edit`. Or puts you in an editor to merge messages for a `squash`
 
 Resume with the `git rebase --continue` command.
@@ -442,7 +442,7 @@ commit and reapplies the commit after the change.
 
     $git filter-branch --tree-filter `rm -f _file_to_remove` HEAD
 
-**Note**: Run this against a branch to make sure it has done what was intended.
+> **Note:** Run this against a branch to make sure it has done what was intended.
 
 ### Belatedly Fix your Email Address
 
