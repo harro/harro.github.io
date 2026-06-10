@@ -1,13 +1,14 @@
 # Working with Git
 
-This document is half cheat-sheet, half refresher - for the occasions when I've
-spent time away from Git and have let myself get rusty (my day-to-day work is
-with Subversion/Mercurial).
+This document is half a cheat-sheet, half a refresher - for the occasions when
+I've spent time away from Git and have let myself get rusty (my day-to-day work
+is with [Mercurial](https://www.mercurial-scm.org/)/[Jujutsu](
+    https://docs.jj-vcs.dev/latest/)).
 
-Published here just in case its useful for others.
+Published here just in case it's useful for others.
 
 > **Note:** Examples use *myorg* and *myproject* as organisation and project name.
-Arguments that depend on the user inputs are prefixed with an underscore.
+Arguments that depend on the user inputs are prefixed with an underscore ( _ ).
 
 ## Help [⎘](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
 
@@ -30,9 +31,9 @@ Or via HTTPS.
     git clone https://github.com/myorg.myproject.git                            # HTTPS is preferred
     git pull https://github.com/myorg.myproject.git
 
-The *pull* command is equivalent to a *fetch* and merge*. the *clone* command
-sets up the local *main/master* branch to track the equivalent default branch
-on the remote.
+The `pull` command is equivalent to a `fetch` and `merge` combination. The
+`clone` command sets up the local *main/master* branch to track the equivalent
+default branch on the remote.
 
 ## A New Repository
 
@@ -41,12 +42,13 @@ the working directory to begin tracking changes - and setup the .git metadata.
 
     git init                                                                    # A fresh start
 
-Init creates a *master* (or *main* in some cases) branch as the default branch.
+The `init` creates a *master* (or *main* in some cases) branch as the default
+branch.
 
 ## Remote Repositories [⎘](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
 
-By default the remote name implicitly defaults to *"origin"* when cloning a
-repository. That way we use the handle *origin* instead of the full URL name of
+By default, when cloning a repository, the remote name implicitly defaults to
+*"origin"*. That way we use the handle *origin* instead of the full URL name of
 the remote repo when syncing changes between the two.
 
 If a client was initialized (`init`), rather than cloned, then it wont yet have
@@ -82,23 +84,24 @@ remote repository, it only affects the local client.
 
 ## Creating and Merging Branches [⎘](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
 
-Major changes should not be done against *main* but rather staged in a branch
-that can be tested, reviewed then merged. Branches will have a unique change
-history and changes in a branch are distinct to that branch.
+Major changes typically are not be done against *main* but rather staged in a
+branch that can be tested, reviewed then merged. Branches will have a unique
+change history and changes in a branch are distinct to that branch.
 
     git branch _branch_name                                                     # Create new branch
     
-Switch to the branch with checkout (`-b` create the branch if it doesn’t exist).
+Switch to the branch with checkout (`-b` creates the branch if it doesn’t
+exist).
 
     git checkout -b _branch_name                                                # Work in a branch
 
-*Switch* is similar to checkout. With `-c` creating the branch beforehand and
-`git switch -` popping you back to where you came from.
+The command `switch` is similar to `checkout`. With `-c` creating the branch
+beforehand and `git switch -` popping you back to where you came from.
 
-> **Note:** *HEAD* is now pointing at this new branch. HEAD is where changes are
-staged and committed.
+> **Note:** *HEAD* is now pointing at this new branch. *HEAD* is where changes
+are staged and committed.
 
-The log command is a great way to see what branch (and commit) we are on.
+The `log` command is a great way to see what branch (and commit) we are on.
 To see all commits then add `--all`, and if you want to see the full tree then
 add `--online --decorate --graph` as well.
 
@@ -121,7 +124,7 @@ Other commands for viewing, navigating and organizing branches.
     git push --delete _remote_name _branch_name                                 # Delete remote
 
 > **Warning:** Edits and staged changes only exist in the current branch. Use
-stashing in order to change branches without losing data.
+*stashing* in order to change branches without losing data.
 
 ## Working with Files [⎘](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 
@@ -168,7 +171,7 @@ Staged a file and have changed your mind and want to unstage it.
 Now that it is unstaged the modifications can be removed completely.
 > **Warning:** Changes to the file will be lost!
 
-    get restore _filename             # Supersedes "git checkout -- _filename"  # Remove edits
+    git restore _filename             # Supersedes "git checkout -- _filename"  # Remove edits
 
 Want to add more files/changes to pending commit, or reword the message (`-m`).
 
@@ -179,7 +182,7 @@ If there are files that shouldn't be in the commit and you want to remove them.
 First reset the HEAD for the file then amend the commit.
 
     git reset HEAD^ -- _filename                                                # Reset single file
-    got commit --amend                                                          # Update last commit
+    git commit --amend                                                          # Update last commit
 
 If we want to remove all changes, staged or in a pending commit.
 
@@ -243,8 +246,8 @@ are three-way merged - Automatically if no conflicts.
 ### Merge Conflicts
 
 If there are merge conflicts then there will be newly modified files with those
-conflicts. Edit the files, search for the `======` conflicts, resolve and then
-stage and commit.
+conflicts. Edit the files, search for the `======` indicating conflicts, resolve
+and then stage and commit.
 
 > **Note:** On github avoid squashing commits when merging. With Codespaces these
 squashed commits result in duplicate commits and merge conflicts.
@@ -279,7 +282,7 @@ chain of commits can be deleted.
 ## Renaming Branches
 
 It is becoming increasingly common for the default branch *master* to be named
-*main*. If we were to do that then it i s a multi step process.
+*main*. If we were to do that ourselves then it is a multi step process.
 
 1. Rename the branch locally.
 1. Push to the remote.
@@ -320,15 +323,16 @@ both the staged changes and unstaged edits (`-u` to also stash new untracked
 files, or even ignored files with `-a`).
 
     git stash                                                                   # Clean workspace
-    git stash list                                                              # Stashes
+    git stash list                                                              # Current stashes
     git stash apply     # stash@{n} --index # to re-stage changes               # Mess is back!
     git stash drop _stash_name                                                  # Delete stash
-    git stash pop _stash_name    # Same as the above two commands, in one
+    git stash pop _stash_name    # Same as the above two commands, in one       # Apply and drop
 
-> **Warning:** This can get even messier if applying the stash to a working
-directory that is not clean. Or a branch where additional commits have since
-been made. There will be potential merge conflicts. To create a new branch
-pointing at the same commit as the original stash had.
+> **Warning:** This can get messy and confusing if applying the stash to a
+working directory that is not clean. Or a branch where additional commits have
+since been made and there will be potential merge conflicts.
+
+To create a new branch that points at the same commit that we had stashed.
 
     git stash branch _new_branch_name                                           # Unstash cleanly
 
@@ -357,7 +361,7 @@ do it very often.
 ### Remove a Commit from the Chain
 
 Assumes several commits have followed, and a sync to remote has happened at
-least once after the offending commit. Maybe a merge form a branch too.
+least once after the offending commit. Maybe a merge from a branch too.
 
     $ git log --oneline
     14d8690 (HEAD -> main, origin/main) Merged
@@ -402,19 +406,19 @@ Changes are back, but the commit history no longer has `14d8690`, `a8bbf03` or
     e3ed2b6 Branch1 commit 1
     db69af9 Initial file creation.
 
-To push and update the remote repo `--force`` is needed as the remote repo is
+To push and update the remote repo `--force` is needed as the remote repo is
 ahead.
 
-Warning: Care should be taken to avoid overwriting changes made by other
+> **Warning**: Care should be taken to avoid overwriting changes made by other
 parties.
 
-    $git push --force       # Force needed as we are now behind the remote.
+    git push --force       # Force needed as we are now behind the remote.
 
 ### Clean up a Messy Commit Chain
 
 The `rebase` command can be run interactively:
 
-    $git rebase -i                                                              # Edit commit chain
+    git rebase -i                                                              # Edit commit chain
 
 * `pick` to keep a commit,
 * `reword` to change the commit message.
@@ -436,13 +440,15 @@ really broken things.
 
 ### Remove a file from Commit Chain
 
-Committed a file with sensitive information, or a bloated binary. The
-`filter-branch` with `--tree-filter` can be used to run a command against each
-commit and reapplies the commit after the change.
+Committed a file with sensitive information, or a perhaps bloated binary that
+should have been omitted from revision control altogether. The `filter-branch`
+with `--tree-filter` can be used to run a command against each commit and
+reapplies the commit after the change.
 
-    $git filter-branch --tree-filter `rm -f _file_to_remove` HEAD
+    git filter-branch --tree-filter `rm -f _file_to_remove` HEAD
 
-> **Note:** Run this against a branch to make sure it has done what was intended.
+> **Note:** Run this against a branch, rather than main, to make sure it has
+done what was intended.
 
 ### Belatedly Fix your Email Address
 
