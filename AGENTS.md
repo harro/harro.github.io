@@ -32,7 +32,10 @@ duplication, simplify control flow. Leave the code better than you found it.
 
 ## De-lint Every Commit (IMPORTANT)
 
-When commiting changes ensure the code is lint checked.
+When making changes ensure the code is both styled and lint checked.
+
+Agent instructions (like this) and skills are to be word wrapped at 80
+characters where possible.
 
 ## Use Strong Types (IMPORTANT)
 
@@ -57,13 +60,6 @@ discrepancies in the same TODO.md file.
 If you need to create a temporary file - to test execution logic, testing or for
 whatever other reason, then create these files under a tmp/ directory in the
 current workspace.
-
-## Comply to the style guide (IMPORTANT)
-
-Read the appropriate style guides for the languages in question and apply the
-recommended style guidance to the changes.
-
-Google Style guides: https://google.github.io/styleguide/
 
 ## Run integration tests (IMPORTANT)
 
