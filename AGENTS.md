@@ -7,6 +7,11 @@ choices, to favour having a more future proof design.
 
 Change to the code should include a change to the documentation where applicable.
 
+
+## Fix Bugs Comprehensively (CRITICAL)
+
+When fixing a bug, search the code and fix all instances where it is applicable.
+
 ## Document Extensively (IMPORTANT)
 
 Classes and functions should be richly documented. Complex logic or process
@@ -14,15 +19,15 @@ flows should also be generously documented.
 
 ## Comments (IMPORTANT)
 
-Keep comments brief and to the point. One-line comments end in a full stop.
-
 Write clear, purposeful comments that explain the **why** and intent behind
 non-obvious logic, design choices, trade-offs, and edge cases, rather than
 merely repeating what the code does.
 
+Keep inline comments brief and to the point. Comments end in a full stop.
+
 Keep comments up-to-date whenever modifying surrounding code to avoid stale
-documentation. When adding temporary items or tracking future work, use standard
-TODO formatting (`TODO(harro): <description>`).
+documentation. When adding temporary items or tracking future work (gap),
+use standard TODO formatting (`TODO(harro): <description>`).
 
 ## Refactor While You Work (IMPORTANT)
 
@@ -41,10 +46,6 @@ characters where possible.
 
 Use type declarations where they add clarity and type safety. Prefer more
 specific types, over general types.
-
-## Fix Bugs Comprehensively (CRITICAL)
-
-When fixing a bug, search the code and fix all instances where it is applicable.
 
 ## Functionality Gap (IMPORTANT)
 
