@@ -1,3 +1,5 @@
+# Agent Guidance
+
 ## Design and Implementation Compliance (CRITICAL)
 
 Inspect the workspace for design and implementation guides. Consider these
@@ -6,7 +8,6 @@ phase, look ahead at future phases documents and use these to inform your design
 choices, to favour having a more future proof design.
 
 Change to the code should include a change to the documentation where applicable.
-
 
 ## Fix Bugs Comprehensively (CRITICAL)
 
@@ -68,4 +69,5 @@ If there are pertinent integration tests (identifiable as suffixed with
 `integration_test`), which are separate from the standard unittests, then run
 these as part of the verification when they are applicable to the changes being
 made.
+
 
