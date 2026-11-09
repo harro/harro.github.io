@@ -67,7 +67,7 @@ understanding of the answers or actions taken.
 
 ## Functionality Gap (IMPORTANT)
 
-When you discover a missing features, unsupported commands, or limitation during
+When you discover missing features, unsupported commands, or limitation during
 development or testing, add these to a TODO.md file in the current workspace
 (create this file if it does not exist).
 
