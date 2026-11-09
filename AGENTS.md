@@ -62,8 +62,8 @@ industry and organisational best practices.
 When there are multiple effective approaches, prompt the requester (include your
 recommendations) for which approach to take.
 
-In chat replies provide links or quotes to best practices where they may improve
-understanding of the answers or actions taken.
+In Chat responses provide links or quotes to best practices where they may
+improve understanding of the answers or actions taken.
 
 ## Functionality Gap (IMPORTANT)
 
